@@ -1,0 +1,84 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<dom-module id="my-greeting">
+    <template>
+        <style include="shared-styles">
+
+            :host {
+                display: block;
+            }
+
+            span,
+            input {
+                @apply(--paper-font-body2);
+            }
+
+            .wherther-container .city-card {
+                padding: 10px;
+            }
+
+            .wherther-container {
+                width: 90%;
+            }
+
+            .paper-item-style {
+            }
+        </style>
+        <!--<h1 class="page-title" tabindex="-1">{{greeting}}</h1>-->
+        <div id="whetherCardContainer" class="wherther-container">
+            <template is="dom-repeat" items="{{cityData}}">
+                <paper-card style="width:40%;height:25%;border:1px dashed white;" class="city-card">
+
+                    <paper-item disable="{{editMode}}" class="paper-item-style" label="City Name">City Name:{{item.name}}</paper-item>
+                    <paper-item disable="{{editMode}}" class="paper-item-style" label="City Whether">City Whether{{item.state}}</paper-item>
+                    <paper-item disable="{{editMode}}" class="paper-item-style" label="City State">City State{{item.whether}}</paper-item>
+
+                    <paper-card style="width:100px;height:50px;border:1px black;float:right;">
+                    </paper-card>
+                </paper-card>
+            </template>
+        </div>
+
+
+    </template>
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'my-greeting',
+
+                properties: {
+                    greeting: {
+                        type: String,
+                        value: 'Welcome!',
+                        notify: true
+                    },
+                    cityData: {
+                        type: Array,
+                        value: [                          
+                            { name: "Johannesburg", id: 0, check: false, whether:"Sunny",state:"Gauteng"},
+                            { name: "Cape Town", id: 1, check: false, whether: "Partly Sunny", state: "KZN"},
+                            { name: "Durban", id: 2, check: false, whether: "Partly cloady", state: "Limpopo"},
+                            { name: "Pretoria", id: 3, check: false, whether: "Sunny", state: "Northern Cape"},
+                            { name: "Umhlanga", id: 4, check: false, whether: "Sunny", state: "Western  Cape"},
+                            { name: "Upington", id: 5, check: false, whether: "Sunny", state: "Eastern  Cape"},
+                            { name: "Witbank", id: 6, check: false, whether: "Sunny", state: ""},
+                            { name: "Secunda", id: 7, check: false, whether: "Sunny", state: ""}
+                        ],
+                        notify: true
+                    }
+                }
+            });
+        })();
+    </script>
+</dom-module>
