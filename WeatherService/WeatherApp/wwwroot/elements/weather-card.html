@@ -1,0 +1,111 @@
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<dom-module id="weather-card">
+    <template>
+        <style include="shared-styles" is="custom-style">
+
+            :host {
+                display: block;
+            }
+
+            span,
+            input {
+                @apply(--paper-font-body2);
+            }
+
+            .wherther-container .cardy-card {
+                padding: 10px;
+            }
+
+            .wherther-container {
+                display:flex;
+                flex-direction:row;
+                flex-wrap:wrap;
+                flex-basis:100%;
+            }
+
+
+            paper-card.card {
+                @apply(--layout-horizontal);
+                width: 400px; 
+                height: 180px;
+            }
+
+            .card-image {
+                width: 100px;
+                height: 170px;
+                background: url('./donuts.png');
+                background-size: cover;
+            }
+
+            .card-content {
+                @apply(--layout-flex);
+                float: left;
+            }
+
+            .card-name {
+                @apply(--paper-font-headline);
+            }
+
+            .card-degree {
+                color: var(--paper-grey-600);
+                margin: 10px 0;
+            }
+
+            paper-icon-button.card-icon {
+                --iron-icon-fill-color: white;
+                --iron-icon-stroke-color: var(--paper-grey-600);
+            }
+        </style>
+      
+        <div class="wherther-container">
+            <template is="dom-repeat" items="{{cityData}}">
+              
+                <div style="margin:10px;">
+                    <paper-card class="card">
+                        <div class="card-content">
+                            <div class="card-content">
+                                <div class="card-name">{{item.name}}</div>
+                                <div class="card-degree">{{item.state}}</div>
+                                <div>{{item.whether}}</div>
+                            </div>
+
+                        </div>
+                        <div class="card-image"></div>
+                    </paper-card>
+                </div>
+
+            </template>
+        </div>
+
+
+    </template>
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'weather-card',
+
+                properties: {
+                   
+                    cityData: {
+                        type: Array,
+                        value: [                          
+                            { name: "Johannesburg", id: 0, check: false, whether:"Sunny",state:"Gauteng"},
+                            { name: "Cape Town", id: 1, check: false, whether: "Partly Sunny", state: "KZN"},
+                            { name: "Durban", id: 2, check: false, whether: "Partly cloady", state: "Limpopo"},
+                            { name: "Pretoria", id: 3, check: false, whether: "Sunny", state: "Northern Cape"},
+                            { name: "Umhlanga", id: 4, check: false, whether: "Sunny", state: "Western  Cape"},
+                            { name: "Upington", id: 5, check: false, whether: "Sunny", state: "Eastern  Cape"},
+                            { name: "Witbank", id: 6, check: false, whether: "Sunny", state: ""},
+                            { name: "Secunda", id: 7, check: false, whether: "Sunny", state: ""}
+                        ],
+                        notify: true
+                    }
+                }
+            });
+        })();
+    </script>
+</dom-module>
