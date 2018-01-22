@@ -1,4 +1,0 @@
-C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp1.1\WeatherServiceApp.csprojResolveAssemblyReference.cache
-C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp1.1\WeatherServiceApp.csproj.CoreCompileInputs.cache
-C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp1.1\WeatherServiceApp.AssemblyInfoInputs.cache
-C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp1.1\WeatherServiceApp.AssemblyInfo.cs
