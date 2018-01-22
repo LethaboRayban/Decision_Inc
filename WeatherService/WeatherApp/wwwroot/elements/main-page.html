@@ -1,0 +1,181 @@
+﻿<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html" />
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html" />
+<link rel="import" href="elements.html">
+
+<dom-module id="main-page">
+    <style>
+        .bottom-title {
+            font-size: 15pt;
+        }
+        .app-name {
+            font-size: 30pt;
+        }
+
+        .menu-name {
+            font-size: 16pt;
+            color: #212121;
+        }
+        .app-menu {
+            top:100px;
+        }
+
+        .spinnerDiv {
+            width: 60%;
+            height: 100%;
+            margin: auto;
+            position: absolute;
+            text-align: center;
+            top: 35%;
+            left: 15%;
+        }
+
+        paper-spinner {
+            width: 400px;
+            height:400px;
+        }
+
+        paper-toolbar.mainNav {
+            background-color: #455A64;
+        }
+
+        paper-toolbar.leftNav {
+            background-color: #CFD8DC;
+        }
+    </style>
+    <template>
+
+        <iron-ajax 
+                   id="allWeather"
+                   url="{{getAllWeatherUrl}}"
+                   method="GET"
+                   content-type="application/json"
+                   loading ="{{isLoading}}"
+                   on-response="_handleInitalResponse"></iron-ajax>
+
+        
+
+        
+            <paper-drawer-panel id="paperDrawerPanel">
+                <!-- Left Panel -->
+                <paper-scroll-header-panel drawer fixed>
+
+                    <paper-toolbar class="leftNav">
+                        <span class="menu-name"><iron-icon icon="icons:filter-list"></iron-icon>City Filter</span>
+                    </paper-toolbar>
+
+                    <div class="app-menu">
+                        <div style="overflow:auto">
+                            <checkbox-list data-list="{{CheckBoxcities}}"></checkbox-list>
+                        </div>
+                    </div>
+                </paper-scroll-header-panel>
+
+                <!-- Main Panel -->
+                <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
+                    <!-- Main Toolbar -->
+                    <paper-toolbar id="mainToolbar" class="tall mainNav">
+                        <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+
+                        <div class="middle middle-container">
+                            <div class="app-name">Decision Inc. Weather Service</div>
+                        </div>
+
+                        <div class="bottom bottom-container">
+                            <div class="bottom-title">Better Decisions, Faster</div>
+                        </div>
+                    </paper-toolbar>
+
+                    <!-- Main Content -->
+                    <div>
+                        <template is="dom-if" if="{{!isLoading}}">
+                            <weather-card id="weatherCards" city-data="{{cities}}"></weather-card>
+                        </template>
+
+                        <template is="dom-if" if="{{isLoading}}">
+                            <div class="spinnerDiv">
+                                <paper-spinner active>...</paper-spinner>
+                            </div>
+                        </template>
+                    </div>
+
+                </paper-scroll-header-panel>
+            </paper-drawer-panel>
+        </template>
+   
+    <script>
+
+
+        Polymer({
+
+            is: 'main-page',
+
+
+            listeners: {
+                'applyFilter': '_applyFilter',
+                'clearFilter': '_setClearFilter'
+            },
+            
+            properties: {
+
+                cities: {type: Array, value: [] },
+                CheckBoxcities: { type: Array, value: [] },
+                isLoading: { type: Boolean, value: true },
+                isClearFilter: { type: Boolean, value: false },
+
+                getAllWeatherUrl: { type: String, value: "Weather/GetAllWeather" },
+                filterListUrl: { type: String, value: "Weather/GetWeatherByCity" },
+
+                idList: {type: Array, value: []}
+
+                
+            },
+
+            ready: function () {
+                this.$.allWeather.generateRequest();
+            },
+
+            _handleInitalResponse: function (e) {
+                debugger;
+                this.set('cities', e.detail.response);
+                this.set('CheckBoxcities', e.detail.response);
+                
+            },
+
+            _setClearFilter: function () {
+                debugger;
+                this.isClearFilter = true; 
+                this._applyFilter();
+            },
+
+            _applyFilter: function (e) {
+                debugger;
+                var _th = this; 
+
+                if (this.isClearFilter) {
+
+                    _th.isLoading = true;
+                    $.post(_th.getAllWeatherUrl, function (data) {
+
+                        debugger;
+                        _th.cities = data; 
+                        _th.isLoading = false;
+                    });
+                }
+
+                else {
+                    _th.idList = e.detail.List; 
+
+                    _th.isLoading = true; 
+                    $.post(_th.filterListUrl, { ids: _th.idList }, function (data) {
+
+                        debugger;
+                        _th.cities = data; 
+                        _th.isLoading = false; 
+                    });
+                }
+                
+            }
+        });
+    </script>
+</dom-module>

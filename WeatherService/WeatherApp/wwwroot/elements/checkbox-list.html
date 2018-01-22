@@ -13,10 +13,10 @@
             }
 
             paper-button.clearBtn {
-                background-color: #2196F3;
+                background-color: #757575;
                 text-transform: none;
                 width: 100%;
-                
+                color: white;
             }
 
             .clearBtnDiv {
@@ -24,13 +24,21 @@
                 width: 50%;
             }
         </style>
-        
+
+        <iron-ajax auto
+                   id="allWeather"
+                   url="{{getAllWeatherUrl}}"
+                   method="GET"
+                   content-type="application/json"
+                   loading="{{isLoading}}"
+                   on-response="_handleInitalResponse"></iron-ajax>
         <div style="height:100%">
 
-            <div id="checkBoxes" >
+
+            <div id="checkBoxes">
                 <template is="dom-repeat" items="{{dataList}}">
                     <div id="tickList" class="layout vertical" style="margin-left: 10px; padding: 5px; ">
-                        <paper-checkbox id="{{item.id}}" on-change="addToList" name="{{item.id}}"><p>{{item.name}}</p></paper-checkbox>
+                        <paper-checkbox id="{{item.city.id}}" on-change="addToList"><p>{{item.city.name}}</p></paper-checkbox>
                     </div>
                 </template>
             </div>
@@ -57,24 +65,27 @@
                 resultList: { type: Array, value: [] },
 
             },
-            
+
+            //ready: function () {
+            //    this.getAllWeatherUrl = "Weather/GetAllWeather";
+            //},
            
             addToList: function (e) {
-
-
+                _th = this; 
+                debugger;
                 var tempList = "";
                 if (e.target.checked) {
 
-                    tempList = e.target.name;
+                    tempList = e.target.id;
                     this.push('resultList', tempList);
                 }
 
                 else {
-                    var index = this.resultList.indexOf(e.target.name);
+                    var index = _th.resultList.indexOf(e.target.id);
                     this.splice('resultList', index, 1);
                 }
-
-                //fire request
+                
+                this.fire('applyFilter', { List: _th.resultList });
 
             },
 
@@ -89,7 +100,14 @@
                     if (this.$.checkBoxes.children[i].children[0].checked)
                         this.$.checkBoxes.children[i].children[0].checked = false;
                 }
-            }
+
+                this.fire('clearFilter');
+            },
+
+            _handleInitalResponse: function (e) {
+                debugger;
+                this.set('dataList', e.detail.response);
+            },
 
 
         });

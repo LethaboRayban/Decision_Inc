@@ -35,7 +35,7 @@
     <!-- endbuild -->
     <!-- Because this project uses vulcanize this should be your only html import
          in this file. All other imports should go in elements.html -->
-    <link rel="import" href="elements/elements.html">
+    <link rel="import" href="~/elements/main-page.html">
     <!-- For shared styles, shared-styles.html import in elements.html -->
     <style is="custom-style" include="shared-styles"></style>
 </head>
@@ -44,50 +44,11 @@
     @*<span id="browser-sync-binding"></span>*@
     <!-- endbuild -->
     <template is="dom-bind" id="app">
-        <paper-drawer-panel id="paperDrawerPanel">
-            <!-- Left Panel -->
-            <paper-scroll-header-panel drawer fixed>
-               
-                <paper-toolbar id="drawerToolbar">
-                    <span class="menu-name"><iron-icon icon="icons:filter-list"></iron-icon>City Filter</span>
-                </paper-toolbar>
-               
-                <div class="app-menu">
-                    @*<div>
-                        <h4 style="text-align:center"><iron-icon icon="icons:filter-list"></iron-icon>City Filter</h4>
-                    </div>*@
-                    <div>
-                        <checkbox-list data-list="{{cities}}"></checkbox-list>
-                    </div>
-                </div>
-            </paper-scroll-header-panel>
-
-            <!-- Main Panel -->
-            <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
-                <!-- Main Toolbar -->
-                <paper-toolbar id="mainToolbar" class="tall" style="background-color:#455A64">
-                    <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-                   
-                    <div class="middle middle-container">
-                        <div class="app-name">Decision Inc. Weather Service</div>
-                    </div>
-                  
-                    <div class="bottom bottom-container">
-                        <div class="bottom-title">Better Decisions, Faster</div>
-                    </div>
-                </paper-toolbar>
-
-                <!-- Main Content -->
-                <div>
-                    <weather-card></weather-card>
-                </div>
-
-            </paper-scroll-header-panel>
-        </paper-drawer-panel>
       
+        <main-page></main-page>
     </template>
     <!-- build:js scripts/app.js -->
-    <script src="scripts/app.js"></script>
+    @*<script src="scripts/app.js"></script>*@
     <!-- endbuild-->
 </body>
 </html>

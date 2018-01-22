@@ -11,25 +11,47 @@ namespace WeatherService
 {
     public class WeatherService : IWeatherService
     {
-        WeatherContext db; 
+        WeatherContext db;
 
         public WeatherService()
         {
-            db = new WeatherContext(); 
+            db = new WeatherContext();
         }
-        public List<City> GetAllWeather()
+
+        public class WeatherVM
+        {
+
+            public City City { get; set; }
+            public string Image64 { get; set; }
+        }
+
+        public List<WeatherVM> GetAllWeather()
         {
             try
             {
-                List<City> CityList = db.City.ToList();
-                return CityList;
+                List<City> allCities = db.City.ToList();
+               
+                List<WeatherVM> result = new List<WeatherVM>();
+
+                foreach(var city in allCities)
+                {
+                  
+                    result.Add(new WeatherVM{
+
+                        City = city,
+                        Image64 = db.Image.FirstOrDefault(a => a.Id == city.ImageId).Photo.ToString()
+                    });
+                  
+                }
+
+                return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //safe fail
-                return new List<City>(); 
+                return new List<WeatherVM>();
             }
-           
+
         }
 
         public bool AddWeatherByCity(City c)
@@ -38,40 +60,49 @@ namespace WeatherService
             {
                 db.City.Add(c);
                 db.SaveChanges();
-                return true; 
+                return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return false; 
+                return false;
             }
-           
+
         }
 
-        public List<City> GetWeatherByCity(List<int> ids)
+
+        public List<WeatherVM> GetWeatherByCity(List<int> ids)
         {
-            List<City> allCities = db.City.ToList();
+
             try
             {
-                List<City> result = new List<City>();
+                List<City> allCities = db.City.ToList();
+                List<WeatherVM> result = new List<WeatherVM>();
 
                 foreach (var city in allCities)
                 {
                     foreach (var id in ids)
                     {
                         if (city.Id == id)
-                            result.Add(city);
+                            result.Add(new WeatherVM
+                            {
+
+                                City = city,
+                                Image64 = db.Image.SingleOrDefault(a => a.Id == city.ImageId).Photo.ToString()
+                            });
                     }
                 }
 
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //safe fail
-                return allCities; 
+
+                return new List<WeatherVM>();
             }
         }
 
+       
         internal class Context
         {
         }

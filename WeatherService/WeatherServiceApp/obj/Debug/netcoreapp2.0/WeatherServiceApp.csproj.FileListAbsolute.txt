@@ -1,0 +1,15 @@
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\WeatherServiceApp.deps.json
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\WeatherServiceApp.runtimeconfig.json
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\WeatherServiceApp.runtimeconfig.dev.json
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\WeatherServiceApp.dll
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\WeatherServiceApp.pdb
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\Debug\netcoreapp2.0\WeatherServiceApp.deps.json
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\Debug\netcoreapp2.0\WeatherServiceApp.runtimeconfig.json
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\Debug\netcoreapp2.0\WeatherServiceApp.runtimeconfig.dev.json
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\Debug\netcoreapp2.0\WeatherServiceApp.dll
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\bin\Debug\netcoreapp2.0\WeatherServiceApp.pdb
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp2.0\WeatherServiceApp.csproj.CoreCompileInputs.cache
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp2.0\WeatherServiceApp.AssemblyInfoInputs.cache
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp2.0\WeatherServiceApp.AssemblyInfo.cs
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp2.0\WeatherServiceApp.dll
+C:\Users\Lethabo\Documents\GitHub\Decision_Inc\WeatherService\WeatherServiceApp\obj\Debug\netcoreapp2.0\WeatherServiceApp.pdb

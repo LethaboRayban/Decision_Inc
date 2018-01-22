@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using static WeatherService.WeatherService;
 
 namespace WeatherService
 {
@@ -14,14 +15,13 @@ namespace WeatherService
     {
 
         [OperationContract]
-        List<City> GetAllWeather();
+        List<WeatherVM> GetAllWeather();
 
         [OperationContract]
-        List<City> GetWeatherByCity(List<int> ids);
+        List<WeatherVM> GetWeatherByCity(List<int> ids);
 
         [OperationContract]
         bool AddWeatherByCity(City c);
-
     }
 
     [DataContract]
